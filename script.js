@@ -171,7 +171,16 @@ $(document).ready(function() {
     var requestUrl = trelloApiRoot + 'createTrelloCard';
     var $relatedTaskRow = $(event.target).parents('[data-task-id]');
     var relatedTaskId = $relatedTaskRow.attr('data-task-id');
+
+// var availableTasks is not updated when changes are made
     var relatedTask = availableTasks[relatedTaskId];
+
+// therefore easier to get current existing text
+    var parentElm = $(this).parents('[data-task-id]');
+    var taskTitle = parentElm.find('[data-task-name-input]').val();
+    var taskContent = parentElm.find('[data-task-content-input]').val();
+
+
     var selectedListId = $relatedTaskRow.find('[data-list-name-select]').val();
 
     if (!selectedListId) {
@@ -186,8 +195,8 @@ $(document).ready(function() {
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
       data: JSON.stringify({
-        name: relatedTask.title,
-        description: relatedTask.content,
+        name: taskTitle,
+        description: taskContent,
         listId: selectedListId
       }),
       success: function(data) {
