@@ -101,6 +101,9 @@ $(document).ready(function() {
         parentEl.attr('data-task-id', data.id).toggleClass('datatable__row--editing');
         parentEl.find('[data-task-name-paragraph]').text(taskTitle);
         parentEl.find('[data-task-content-paragraph]').text(taskContent);
+
+        availableTasks[taskId].title = taskTitle;
+        availableTasks[taskId].content = taskContent;
       }
     });
   }
@@ -171,16 +174,7 @@ $(document).ready(function() {
     var requestUrl = trelloApiRoot + 'createTrelloCard';
     var $relatedTaskRow = $(event.target).parents('[data-task-id]');
     var relatedTaskId = $relatedTaskRow.attr('data-task-id');
-
-// var availableTasks is not updated when changes are made
     var relatedTask = availableTasks[relatedTaskId];
-
-// therefore easier to get current existing text
-    var parentElm = $(this).parents('[data-task-id]');
-    var taskTitle = parentElm.find('[data-task-name-input]').val();
-    var taskContent = parentElm.find('[data-task-content-input]').val();
-
-
     var selectedListId = $relatedTaskRow.find('[data-list-name-select]').val();
 
     if (!selectedListId) {
@@ -195,8 +189,8 @@ $(document).ready(function() {
       contentType: "application/json; charset=utf-8",
       dataType: 'json',
       data: JSON.stringify({
-        name: taskTitle,
-        description: taskContent,
+      	name: relatedTask.title,
+        description: relatedTask.content,
         listId: selectedListId
       }),
       success: function(data) {
