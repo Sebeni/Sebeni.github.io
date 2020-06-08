@@ -1,5 +1,13 @@
-### Opis
-link do dema: https://sebeni.github.io/
-Frontend dla aplikacji CRUD REST pozwalającej na tworzenie, zapisywanie i usuwanie zadań zarówno w lokalnej bazie danych jak i tablicach Trello.
+### Demo
+ - link do frontu: https://sebeni.github.io/
+ - link do dokumentacji api (swagger): https://rocky-citadel-33586.herokuapp.com/swagger-ui.html#/
 
-Backend działa na darmowym serwerze Heroku, dlatego po pierwszym uruchomieniu należy chwilę poczkeać.
+### Opis
+Frontend dla aplikacji CRUD REST napisany html + css + javascript (biblioteka jQuery 3.4.1)
+
+Backend działa na darmowym serwerze Heroku, dlatego po pierwszym uruchomieniu należy chwilę poczekać.
+
+Zbudowany w Java 1.8 za pomocą Gradle. Użyte zależności: 
+- spring boot (web, data-jpa, validation, mail, actuator, thymeleaf, junit), h2database, mysql, postgresql, lombok, swagger, gson
+
+Aplikacja pozwala na zapis, modyfikację i usuwanie zadań w bazie danych oraz podłączonym koncie Trello.
